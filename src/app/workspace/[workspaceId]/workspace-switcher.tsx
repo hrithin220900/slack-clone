@@ -18,9 +18,10 @@ const WorkspaceSwitcher = () => {
   const workspaceId = useWorkspaceId();
   const [_open, setOpen] = useCreateWorkspaceModal();
 
-  const { data: workspace, isLoading: workspaceLoading } = useGetWorkspace({
-    id: workspaceId,
-  });
+  const { data: workspace, isLoading: workspaceLoading } =
+    useGetWorkspace({
+      id: workspaceId,
+    }) || {};
 
   const { data: workspaces, isLoading: workspacesLoading } = useGetWorkspaces();
 
@@ -30,7 +31,7 @@ const WorkspaceSwitcher = () => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>
         <Button className="size-9 relative overflow-hidden bg-[#ABABAB] hover:bg-[#ABABAB]/80 text-slate-800 font-semibold text-xl">
           {workspaceLoading ? (
             <Loader className="size-5 animate-spin shrink-0" />
