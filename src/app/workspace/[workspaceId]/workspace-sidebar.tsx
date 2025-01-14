@@ -34,6 +34,8 @@ const WorkspaceSidebar = () => {
     workspaceId,
   });
 
+  console.log("members: ", members);
+
   if (workspaceLoading || memberLoading) {
     return (
       <div className="flex flex-col bg-[#5E2C5F] h-full items-center justify-center">
