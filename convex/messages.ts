@@ -25,7 +25,7 @@ const populateThread = async (ctx: QueryCtx, messageId: Id<"messages">) => {
 
   if (!lastMessageMember) {
     return {
-      count: messages.length,
+      count: 0,
       images: undefined,
       timeStamp: 0,
     };
@@ -141,7 +141,7 @@ export const get = query({
     const userId = await getAuthUserId(ctx);
 
     if (!userId) {
-      return null;
+      throw new Error("Unauthorized");
     }
 
     let _conversationId = args.conversationId;
@@ -169,9 +169,9 @@ export const get = query({
 
     return {
       ...results,
-      page: await Promise.all(
-        results.page
-          .map(async (message) => {
+      page: (
+        await Promise.all(
+          results.page.map(async (message) => {
             const member = await populateMember(ctx, message.memberId);
             const user = member ? await populateUser(ctx, member.userId) : null;
 
@@ -215,8 +215,9 @@ export const get = query({
               })[]
             );
 
-            const reactionsWithMemberIdProperty = dedupedReactions.map(
-              (memberId, ...rest) => rest
+            const reactionsWithoutMemberIdProperty = dedupedReactions.map(
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
+              ({ memberId, ...rest }) => rest
             );
 
             return {
@@ -224,13 +225,15 @@ export const get = query({
               image,
               member,
               user,
-              reactions: reactionsWithMemberIdProperty,
+              reactions: reactionsWithoutMemberIdProperty,
               threadCount: thread.count,
               threadImage: thread.image,
               threaadTimestamp: thread.timeStamp,
             };
           })
-          .filter((message) => message != null)
+        )
+      ).filter(
+        (message): message is NonNullable<typeof message> => message != null
       ),
     };
   },

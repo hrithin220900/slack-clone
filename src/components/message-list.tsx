@@ -22,7 +22,7 @@ interface MessageListProps {
   canLoadMore: boolean;
 }
 
-const formatDateLabel = (dateStr: str) => {
+const formatDateLabel = (dateStr: string) => {
   const date = new Date(dateStr);
 
   if (isToday(date)) return "Today";
