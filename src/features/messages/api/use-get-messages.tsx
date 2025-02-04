@@ -4,7 +4,7 @@ import { Id } from "../../../../convex/_generated/dataModel";
 
 const BATCH_SIZE = 20;
 
-interface UserGetMessageProps {
+interface UserGetMessagesProps {
   channelId?: Id<"channels">;
   conversationId?: Id<"conversations">;
   parentMessageId?: Id<"messages">;
@@ -17,7 +17,7 @@ export const useGetMessages = ({
   channelId,
   conversationId,
   parentMessageId,
-}: UserGetMessageProps) => {
+}: UserGetMessagesProps) => {
   const { results, status, loadMore } = usePaginatedQuery(
     api.messages.get,
     {

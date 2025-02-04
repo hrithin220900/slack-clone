@@ -6,6 +6,7 @@ import { ConvexClientProvider } from "@/components/convex-client-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { Modals } from "@/components/modals";
 import { JotaiProvider } from "@/components/jotai-provider";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -36,9 +37,11 @@ export default function RootLayout({
         >
           <ConvexClientProvider>
             <JotaiProvider>
-              <Toaster />
-              <Modals />
-              {children}
+              <NuqsAdapter>
+                <Toaster />
+                <Modals />
+                {children}
+              </NuqsAdapter>
             </JotaiProvider>
           </ConvexClientProvider>
         </body>
