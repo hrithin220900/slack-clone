@@ -144,7 +144,7 @@ export const Thread = ({ messageId, onClose }: ThreadProps) => {
             <XIcon className="size-5 stroke-[1.5]" />
           </Button>
         </div>
-        <div className="flex flex-col gap-y-2 items-center justify-center">
+        <div className="flex flex-col h-full gap-y-2 items-center justify-center">
           <Loader className="size-5 text-muted-foreground animate-spin" />
           <p className="text-sm text-muted-foreground">Message not found</p>
         </div>
@@ -161,7 +161,7 @@ export const Thread = ({ messageId, onClose }: ThreadProps) => {
             <XIcon className="size-5 stroke-[1.5]" />
           </Button>
         </div>
-        <div className="flex flex-col gap-y-2 items-center justify-center">
+        <div className="flex flex-col h-full gap-y-2 items-center justify-center">
           <AlertTriangle className="size-5 text-muted-foreground" />
           <p className="text-sm text-muted-foreground">Message not found</p>
         </div>
