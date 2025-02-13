@@ -12,7 +12,6 @@ const Editor = dynamic(() => import("@/components/editor"), { ssr: false });
 
 interface ChatInputProps {
   placeholder: string;
-  conversationId: Id<"conversations">;
 }
 
 type CreateMessageValues = {
