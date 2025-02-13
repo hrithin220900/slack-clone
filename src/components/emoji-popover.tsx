@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Popover,
   PopoverContent,
@@ -18,7 +19,7 @@ import Data from "@emoji-mart/data";
 interface EmpojiPopoverProps {
   children: React.ReactNode;
   hint?: string;
-  onEmojiSelect: (emoji: never) => void;
+  onEmojiSelect: (emoji: any) => void;
 }
 
 export const EmojiPopover = ({
@@ -29,7 +30,7 @@ export const EmojiPopover = ({
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
-  const onSelect = (emoji: never) => {
+  const onSelect = (emoji: any) => {
     onEmojiSelect(emoji);
     setPopoverOpen(false);
 
