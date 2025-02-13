@@ -16,7 +16,7 @@ import { useRouter } from "next/navigation";
 const WorkspaceSwitcher = () => {
   const router = useRouter();
   const workspaceId = useWorkspaceId();
-  const [_open, setOpen] = useCreateWorkspaceModal();
+  const [open, setOpen] = useCreateWorkspaceModal();
 
   const { data: workspace, isLoading: workspaceLoading } = useGetWorkspace({
     id: workspaceId,
@@ -27,6 +27,8 @@ const WorkspaceSwitcher = () => {
   const filteredWorkspaces = workspaces?.filter(
     (workspace) => workspace?._id !== workspaceId
   );
+
+  console.log(open);
 
   return (
     <DropdownMenu>
