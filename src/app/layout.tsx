@@ -30,6 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    // @ts-expect-error there is some issue with ConvexAuthNextjsServerProvider returning a Promise object
     <ConvexAuthNextjsServerProvider>
       <html lang="en">
         <body
